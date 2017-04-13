@@ -2,7 +2,15 @@
 #include <vector>
 
 using namespace std;
-
+enum scale{
+    Kelvin = 'K',
+    Celsus = 'C',
+    Farengeite = 'F'
+};
+struct Temp{
+    scale scale;
+    double value;
+};
 int
 main() {
     size_t number_count;
