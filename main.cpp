@@ -82,23 +82,24 @@ bool  operator< (const Temp& lhs, const Temp& rhs)
 int
 main() {
     test_input();
-    size_t number_count;
+    size_t temp_count;
     cerr << "Enter number count: ";
-    cin >> number_count;
+    cin >> temp_count;
 
-    cerr << "Enter numbers: ";
-    vector<double> numbers(number_count);
-    for (size_t i = 0; i < number_count; i++) {
-        cin >> numbers[i];
+    cerr << "Enter temp: ";
+    vector<Temp> temp(temp_count);
+    for (size_t i = 0; i < temp_count; i++) {
+        cin >> temp[i];
     }
 
     size_t column_count;
     cerr << "Enter column count: ";
     cin >> column_count;
 
-    double min = numbers[0];
-    double max = numbers[0];
-    for (double number : numbers) {
+    double min = convert(temp[0],Kelvin).value;
+    double max = convert(temp[0],Kelvin).value;
+    for (Temp number0 : temp) {
+        double number = convert(number0,Kelvin).value;
         if (number < min) {
             min = number;
         }
@@ -108,7 +109,7 @@ main() {
     }
 
     vector<size_t> counts(column_count);
-    for (double number : numbers) {
+    for (double number : temp) {
         size_t column = (size_t)((number - min) / (max - min) * column_count);
         if (column == column_count) {
             column--;
