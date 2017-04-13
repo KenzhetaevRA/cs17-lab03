@@ -2,15 +2,33 @@
 #include <vector>
 
 using namespace std;
-enum scale{
+enum Scale{
     Kelvin = 'K',
     Celsus = 'C',
-    Farengeite = 'F'
+    Farenheit = 'F'
 };
 struct Temp{
-    scale scale;
+    Scale scale;
     double value;
 };
+Temp t;
+istream & operator>> (istream & in, Temp & t)
+{
+    in>>t.value;
+    char symbol;
+    in>> symbol;
+    switch(symbol)
+    {
+    case 'K': t.scale=Kelvin;
+                break;
+    case 'C': t.scale=Celsus;
+        break;
+    case 'F': t.scale=Farenheit;
+        break;
+
+    }
+    return in;
+}
 int
 main() {
     size_t number_count;
