@@ -12,7 +12,6 @@ struct Temp{
     double value;
     Scale scale;
 };
-Temp t;
 istream & operator>> (istream & in, Temp & t)
 {
     in>>t.value;
@@ -46,6 +45,33 @@ void test_input()
     in3>>t;
     assert(t.value==5);
     assert(t.scale== Farenheit);
+}
+Temp convert(const Temp& from, Scale scale){
+    double kel;
+    Temp to;
+    switch(from.scale) {
+    case Kelvin:
+        kel = from.value;
+        break;
+    case Celsus:
+        kel = from.value + 273;
+        break;
+    case Farenheit:
+        kel = (from.value - 273) * 1.8 + 32;
+        break;
+    }
+        switch(scale)
+        {
+        case Kelvin: to.value = kel;
+            break;
+        case Celsus: to.value = kel-273;
+            break;
+        case Farenheit: to.value = 5*(kel - 32)/9+273 ;
+            break;
+
+        }
+    to.scale=scale;
+    return (to);
 }
 int
 main() {
