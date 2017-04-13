@@ -73,6 +73,12 @@ Temp convert(const Temp& from, Scale scale){
     to.scale=scale;
     return (to);
 }
+bool  operator< (const Temp& lhs, const Temp& rhs)
+{
+    Temp OutL;
+    OutL=convert(lhs,rhs.scale);
+    return OutL.value<rhs.value;
+}
 int
 main() {
     test_input();
