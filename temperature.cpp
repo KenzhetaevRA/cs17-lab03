@@ -3,20 +3,29 @@
 //
 #include "temperature.h"
 using  namespace std;
-istream & operator>> (istream & in, Temp & t)
-{
-    in>>t.value;
+istream & operator>> (istream & in, Temp & t) {
+    in >> t.value;
     char symbol;
-    in>> symbol;
-    switch(symbol)
-    {
-    case 'K': t.scale=Kelvin;
-        break;
-    case 'C': t.scale=Celsus;
-        break;
-    case 'F': t.scale=Farenheit;
-        break;
+    if (!in) {
+        in.setstate(ios_base::failbit);
+        return in;
     }
+    in >> symbol;
+    switch (symbol) {
+    case 'K':
+        t.scale = Kelvin;
+        break;
+    case 'C':
+        t.scale = Celsus;
+        break;
+    case 'F':
+        t.scale = Farenheit;
+        break;
+
+    default:
+        in.setstate(ios_base::failbit);
+    }
+    if(convert(t,Kelvin).value<0) {in.setstate(ios_base::failbit);}
     return in;
 }
 
