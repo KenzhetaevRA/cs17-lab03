@@ -4,5 +4,5 @@ set(CMAKE_EXE_LINKER_FLAGS -static)
 set(SOURCE_FILES main.cpp temperature.cpp )
 add_executable(lab01 ${SOURCE_FILES})
 add_executable(lab01_input_test test_input.cpp temperature.cpp)
-
-
+enable_testing()
+add_test(NAME test_input COMMAND lab01_input_test )
