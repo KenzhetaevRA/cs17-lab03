@@ -4,22 +4,6 @@
 #include <cassert>
 #include "temperature.h"
 using namespace std;
-istream & operator>> (istream & in, Temp & t)
-{
-    in>>t.value;
-    char symbol;
-    in>> symbol;
-    switch(symbol)
-    {
-    case 'K': t.scale=Kelvin;
-                break;
-    case 'C': t.scale=Celsus;
-        break;
-    case 'F': t.scale=Farenheit;
-        break;
-    }
-    return in;
-}
 void test_input()
 {
     stringstream in1("0K");
@@ -37,39 +21,6 @@ void test_input()
     in3>>t;
     assert(t.value==5);
     assert(t.scale== Farenheit);
-}
-Temp convert(const Temp& from, Scale scale){
-    double kel;
-    Temp to;
-    switch(from.scale) {
-    case Kelvin:
-        kel = from.value;
-        break;
-    case Celsus:
-        kel = from.value + 273;
-        break;
-    case Farenheit:
-        kel = (from.value - 273) * 1.8 + 32;
-        break;
-    }
-        switch(scale)
-        {
-        case Kelvin: to.value = kel;
-            break;
-        case Celsus: to.value = kel-273;
-            break;
-        case Farenheit: to.value = 5*(kel - 32)/9+273 ;
-            break;
-
-        }
-    to.scale=scale;
-    return (to);
-}
-bool  operator< (const Temp& lhs, const Temp& rhs)
-{
-    Temp OutL;
-    OutL=convert(lhs,rhs.scale);
-    return OutL.value<rhs.value;
 }
 int
 main() {
@@ -99,7 +50,7 @@ main() {
             max = number;
         }
     }
-
+/*
     vector<size_t> counts(column_count);
     for (double number : temp) {
         size_t column = (size_t)((number - min) / (max - min) * column_count);
@@ -143,6 +94,6 @@ main() {
         }
         cout << '\n';
     }
-
+*/
     return 0;
 }
