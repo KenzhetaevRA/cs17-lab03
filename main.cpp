@@ -5,8 +5,9 @@ using namespace std;
 int
 main() {
     size_t temp_count;
-    cerr << "Enter number count: ";
+    cerr << "Enter number temp: ";
     cin >> temp_count;
+
 
     cerr << "Enter temp: ";
     vector<Temp> temp(temp_count);
@@ -27,11 +28,13 @@ main() {
         }
         if (number > max) {
             max = number;
+
         }
     }
-/*
+
     vector<size_t> counts(column_count);
-    for (double number : temp) {
+    for (Temp number0 : temp) {
+        double number = convert(number0,Kelvin).value;
         size_t column = (size_t)((number - min) / (max - min) * column_count);
         if (column == column_count) {
             column--;
@@ -73,6 +76,7 @@ main() {
         }
         cout << '\n';
     }
-*/
+
     return 0;
 }
+

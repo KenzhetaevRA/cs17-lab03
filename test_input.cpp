@@ -1,7 +1,3 @@
-//
-// Created by u211-14 on 27.04.2017.
-//
-
 #include <sstream>
 #include <cassert>
 #include "temperature.h"
